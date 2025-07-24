@@ -40,7 +40,7 @@ template<>
 struct MD5Sum< ::coord_to_lane::JsonToLane > {
   static const char* value()
   {
-    return "6536ea10ea6cb2d403a81b2dcef96384";
+    return "b737285eed744467ad49ee7f51ca3326";
   }
 
   static const char* value(const ::coord_to_lane::JsonToLane&) { return value(); }

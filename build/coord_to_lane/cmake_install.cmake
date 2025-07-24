@@ -93,3 +93,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/coord_to_lane" TYPE FILE FILES "/home/taylan/coord_to_lane_ws/src/coord_to_lane/package.xml")
 endif()
 
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/coord_to_lane" TYPE DIRECTORY FILES "/home/taylan/coord_to_lane_ws/src/coord_to_lane/launch")
+endif()
+

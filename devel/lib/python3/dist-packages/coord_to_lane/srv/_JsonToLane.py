@@ -101,14 +101,19 @@ import struct
 
 
 class JsonToLaneResponse(genpy.Message):
-  _md5sum = "6536ea10ea6cb2d403a81b2dcef96384"
+  _md5sum = "b737285eed744467ad49ee7f51ca3326"
   _type = "coord_to_lane/JsonToLaneResponse"
   _has_header = False  # flag to mark the presence of a Header object
   _full_text = """int32[] lanelet_ids
+float64[] latitudes
+float64[] longitudes
+float64[] local_xs
+float64[] local_ys
+float64[] headings
 
 """
-  __slots__ = ['lanelet_ids']
-  _slot_types = ['int32[]']
+  __slots__ = ['lanelet_ids','latitudes','longitudes','local_xs','local_ys','headings']
+  _slot_types = ['int32[]','float64[]','float64[]','float64[]','float64[]','float64[]']
 
   def __init__(self, *args, **kwds):
     """
@@ -118,7 +123,7 @@ class JsonToLaneResponse(genpy.Message):
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       lanelet_ids
+       lanelet_ids,latitudes,longitudes,local_xs,local_ys,headings
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -129,8 +134,23 @@ class JsonToLaneResponse(genpy.Message):
       # message fields cannot be None, assign default values for those that are
       if self.lanelet_ids is None:
         self.lanelet_ids = []
+      if self.latitudes is None:
+        self.latitudes = []
+      if self.longitudes is None:
+        self.longitudes = []
+      if self.local_xs is None:
+        self.local_xs = []
+      if self.local_ys is None:
+        self.local_ys = []
+      if self.headings is None:
+        self.headings = []
     else:
       self.lanelet_ids = []
+      self.latitudes = []
+      self.longitudes = []
+      self.local_xs = []
+      self.local_ys = []
+      self.headings = []
 
   def _get_types(self):
     """
@@ -148,6 +168,26 @@ class JsonToLaneResponse(genpy.Message):
       buff.write(_struct_I.pack(length))
       pattern = '<%si'%length
       buff.write(struct.Struct(pattern).pack(*self.lanelet_ids))
+      length = len(self.latitudes)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sd'%length
+      buff.write(struct.Struct(pattern).pack(*self.latitudes))
+      length = len(self.longitudes)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sd'%length
+      buff.write(struct.Struct(pattern).pack(*self.longitudes))
+      length = len(self.local_xs)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sd'%length
+      buff.write(struct.Struct(pattern).pack(*self.local_xs))
+      length = len(self.local_ys)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sd'%length
+      buff.write(struct.Struct(pattern).pack(*self.local_ys))
+      length = len(self.headings)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sd'%length
+      buff.write(struct.Struct(pattern).pack(*self.headings))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -168,6 +208,46 @@ class JsonToLaneResponse(genpy.Message):
       s = struct.Struct(pattern)
       end += s.size
       self.lanelet_ids = s.unpack(str[start:end])
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sd'%length
+      start = end
+      s = struct.Struct(pattern)
+      end += s.size
+      self.latitudes = s.unpack(str[start:end])
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sd'%length
+      start = end
+      s = struct.Struct(pattern)
+      end += s.size
+      self.longitudes = s.unpack(str[start:end])
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sd'%length
+      start = end
+      s = struct.Struct(pattern)
+      end += s.size
+      self.local_xs = s.unpack(str[start:end])
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sd'%length
+      start = end
+      s = struct.Struct(pattern)
+      end += s.size
+      self.local_ys = s.unpack(str[start:end])
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sd'%length
+      start = end
+      s = struct.Struct(pattern)
+      end += s.size
+      self.headings = s.unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -184,6 +264,26 @@ class JsonToLaneResponse(genpy.Message):
       buff.write(_struct_I.pack(length))
       pattern = '<%si'%length
       buff.write(self.lanelet_ids.tostring())
+      length = len(self.latitudes)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sd'%length
+      buff.write(self.latitudes.tostring())
+      length = len(self.longitudes)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sd'%length
+      buff.write(self.longitudes.tostring())
+      length = len(self.local_xs)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sd'%length
+      buff.write(self.local_xs.tostring())
+      length = len(self.local_ys)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sd'%length
+      buff.write(self.local_ys.tostring())
+      length = len(self.headings)
+      buff.write(_struct_I.pack(length))
+      pattern = '<%sd'%length
+      buff.write(self.headings.tostring())
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -205,6 +305,46 @@ class JsonToLaneResponse(genpy.Message):
       s = struct.Struct(pattern)
       end += s.size
       self.lanelet_ids = numpy.frombuffer(str[start:end], dtype=numpy.int32, count=length)
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sd'%length
+      start = end
+      s = struct.Struct(pattern)
+      end += s.size
+      self.latitudes = numpy.frombuffer(str[start:end], dtype=numpy.float64, count=length)
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sd'%length
+      start = end
+      s = struct.Struct(pattern)
+      end += s.size
+      self.longitudes = numpy.frombuffer(str[start:end], dtype=numpy.float64, count=length)
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sd'%length
+      start = end
+      s = struct.Struct(pattern)
+      end += s.size
+      self.local_xs = numpy.frombuffer(str[start:end], dtype=numpy.float64, count=length)
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sd'%length
+      start = end
+      s = struct.Struct(pattern)
+      end += s.size
+      self.local_ys = numpy.frombuffer(str[start:end], dtype=numpy.float64, count=length)
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      pattern = '<%sd'%length
+      start = end
+      s = struct.Struct(pattern)
+      end += s.size
+      self.headings = numpy.frombuffer(str[start:end], dtype=numpy.float64, count=length)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -215,6 +355,6 @@ def _get_struct_I():
     return _struct_I
 class JsonToLane(object):
   _type          = 'coord_to_lane/JsonToLane'
-  _md5sum = '6536ea10ea6cb2d403a81b2dcef96384'
+  _md5sum = 'b737285eed744467ad49ee7f51ca3326'
   _request_class  = JsonToLaneRequest
   _response_class = JsonToLaneResponse

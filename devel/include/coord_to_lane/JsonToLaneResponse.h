@@ -24,10 +24,20 @@ struct JsonToLaneResponse_
   typedef JsonToLaneResponse_<ContainerAllocator> Type;
 
   JsonToLaneResponse_()
-    : lanelet_ids()  {
+    : lanelet_ids()
+    , latitudes()
+    , longitudes()
+    , local_xs()
+    , local_ys()
+    , headings()  {
     }
   JsonToLaneResponse_(const ContainerAllocator& _alloc)
-    : lanelet_ids(_alloc)  {
+    : lanelet_ids(_alloc)
+    , latitudes(_alloc)
+    , longitudes(_alloc)
+    , local_xs(_alloc)
+    , local_ys(_alloc)
+    , headings(_alloc)  {
   (void)_alloc;
     }
 
@@ -35,6 +45,21 @@ struct JsonToLaneResponse_
 
    typedef std::vector<int32_t, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<int32_t>> _lanelet_ids_type;
   _lanelet_ids_type lanelet_ids;
+
+   typedef std::vector<double, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<double>> _latitudes_type;
+  _latitudes_type latitudes;
+
+   typedef std::vector<double, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<double>> _longitudes_type;
+  _longitudes_type longitudes;
+
+   typedef std::vector<double, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<double>> _local_xs_type;
+  _local_xs_type local_xs;
+
+   typedef std::vector<double, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<double>> _local_ys_type;
+  _local_ys_type local_ys;
+
+   typedef std::vector<double, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<double>> _headings_type;
+  _headings_type headings;
 
 
 
@@ -65,7 +90,12 @@ return s;
 template<typename ContainerAllocator1, typename ContainerAllocator2>
 bool operator==(const ::coord_to_lane::JsonToLaneResponse_<ContainerAllocator1> & lhs, const ::coord_to_lane::JsonToLaneResponse_<ContainerAllocator2> & rhs)
 {
-  return lhs.lanelet_ids == rhs.lanelet_ids;
+  return lhs.lanelet_ids == rhs.lanelet_ids &&
+    lhs.latitudes == rhs.latitudes &&
+    lhs.longitudes == rhs.longitudes &&
+    lhs.local_xs == rhs.local_xs &&
+    lhs.local_ys == rhs.local_ys &&
+    lhs.headings == rhs.headings;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -122,12 +152,12 @@ struct MD5Sum< ::coord_to_lane::JsonToLaneResponse_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "6536ea10ea6cb2d403a81b2dcef96384";
+    return "b737285eed744467ad49ee7f51ca3326";
   }
 
   static const char* value(const ::coord_to_lane::JsonToLaneResponse_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x6536ea10ea6cb2d4ULL;
-  static const uint64_t static_value2 = 0x03a81b2dcef96384ULL;
+  static const uint64_t static_value1 = 0xb737285eed744467ULL;
+  static const uint64_t static_value2 = 0xad49ee7f51ca3326ULL;
 };
 
 template<class ContainerAllocator>
@@ -147,6 +177,11 @@ struct Definition< ::coord_to_lane::JsonToLaneResponse_<ContainerAllocator> >
   static const char* value()
   {
     return "int32[] lanelet_ids\n"
+"float64[] latitudes\n"
+"float64[] longitudes\n"
+"float64[] local_xs\n"
+"float64[] local_ys\n"
+"float64[] headings\n"
 "\n"
 ;
   }
@@ -167,6 +202,11 @@ namespace serialization
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
       stream.next(m.lanelet_ids);
+      stream.next(m.latitudes);
+      stream.next(m.longitudes);
+      stream.next(m.local_xs);
+      stream.next(m.local_ys);
+      stream.next(m.headings);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -199,6 +239,81 @@ struct Printer< ::coord_to_lane::JsonToLaneResponse_<ContainerAllocator> >
       Printer<int32_t>::stream(s, true ? std::string() : indent + "    ", v.lanelet_ids[i]);
     }
     if (v.lanelet_ids.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "latitudes: ";
+    if (v.latitudes.empty() || true)
+      s << "[";
+    for (size_t i = 0; i < v.latitudes.size(); ++i)
+    {
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<double>::stream(s, true ? std::string() : indent + "    ", v.latitudes[i]);
+    }
+    if (v.latitudes.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "longitudes: ";
+    if (v.longitudes.empty() || true)
+      s << "[";
+    for (size_t i = 0; i < v.longitudes.size(); ++i)
+    {
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<double>::stream(s, true ? std::string() : indent + "    ", v.longitudes[i]);
+    }
+    if (v.longitudes.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "local_xs: ";
+    if (v.local_xs.empty() || true)
+      s << "[";
+    for (size_t i = 0; i < v.local_xs.size(); ++i)
+    {
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<double>::stream(s, true ? std::string() : indent + "    ", v.local_xs[i]);
+    }
+    if (v.local_xs.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "local_ys: ";
+    if (v.local_ys.empty() || true)
+      s << "[";
+    for (size_t i = 0; i < v.local_ys.size(); ++i)
+    {
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<double>::stream(s, true ? std::string() : indent + "    ", v.local_ys[i]);
+    }
+    if (v.local_ys.empty() || true)
+      s << "]";
+    if (true || !indent.empty())
+      s << std::endl;
+    s << indent << "headings: ";
+    if (v.headings.empty() || true)
+      s << "[";
+    for (size_t i = 0; i < v.headings.size(); ++i)
+    {
+      if (true && i > 0)
+        s << ", ";
+      else if (!true)
+        s << std::endl << indent << "  -";
+      Printer<double>::stream(s, true ? std::string() : indent + "    ", v.headings[i]);
+    }
+    if (v.headings.empty() || true)
       s << "]";
   }
 };
