@@ -11,12 +11,10 @@
 #include "coord_to_lane/JsonToLane.h"
 
 using json = nlohmann::json;
- 
 
 lanelet::LaneletMapPtr lanelet_map;
 lanelet::projection::UtmProjector projector(lanelet::Origin({40.9896, 29.1234}));
 std::string geojson_path;
- 
 
 bool extractLatLonFromGeoJSON(std::vector<std::pair<double, double>>& coords)
 {
