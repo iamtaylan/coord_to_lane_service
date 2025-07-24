@@ -1,0 +1,8 @@
+prefix=/home/taylan/coord_to_lane_ws/install
+
+Name: coord_to_lane
+Description: Description of coord_to_lane
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: roscpp std_msgs message_runtime

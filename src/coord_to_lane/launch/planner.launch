@@ -1,0 +1,9 @@
+<launch>
+    <arg name="geojson_file" default="$(find coord_to_lane)/geo/task_points.json"/>
+    <arg name="lanelet_map_file" default="$(find coord_to_lane)/ll2map/sim_v0.7.osm"/>
+
+    <node name="geojson_lane_service_node" pkg="coord_to_lane" type="json_to_lane_node" output="screen">
+        <param name="geojson_file" value="$(arg geojson_file)" />
+        <param name="lanelet_map" value="$(arg lanelet_map_file)" />
+    </node>
+</launch>
